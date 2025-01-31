@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Pricing Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
+
+        .selected-card {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border: 2px solid #EF6603;
+        }
+        .text-color{
+            color:#EF6603;
+        }
+        .background-css{
+    /*
+* Created with https://www.css-gradient.com
+* Gradient link: https://www.css-gradient.com/?c1=91e8e7&c2=fbb54e&gt=l&gd=dtl
+*/
+background: #91E8E7;
+background: linear-gradient(135deg, #ffffff, #ffd9a1);
+        }
+
+        .btn {
+  outline: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #EF6603;
+  min-width: 200px;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
+  box-sizing: border-box;
+  padding: 16px 20px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.btn:hover {
+  opacity: .95;
+}
+
+.btn .animation {
+  border-radius: 100%;
+  animation: ripple 0.6s linear infinite;
+}
+
+@keyframes ripple {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.1), 0 0 0 20px rgba(255, 255, 255, 0.1), 0 0 0 40px rgba(255, 255, 255, 0.1), 0 0 0 60px rgba(255, 255, 255, 0.1);
+  }
+
+  100% {
+    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.1), 0 0 0 40px rgba(255, 255, 255, 0.1), 0 0 0 60px rgba(255, 255, 255, 0.1), 0 0 0 80px rgba(255, 255, 255, 0);
+  }
+}
+    </style>
+</head>
+<body class="background-css min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-center text-4xl font-bold text-color mb-8" data-aos="fade-down">Website Pricing Calculator</h1>
+        
+        <div class="type-of-website mb-8" data-aos="fade-up">
+            <h2 class="text-color text-2xl font-bold mb-4">Type of Website</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- Dynamic -->
+                <div class="cursor-pointer text-center p-4 bg-white rounded-lg shadow-md transition-all transform hover:scale-105" onclick="selectType('Dynamic')" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://cdn.dribbble.com/users/48223/screenshots/1887714/responsive-website-animations-copy.gif" alt="Dynamic" class="w-24 h-24 mx-auto rounded-full" />
+                    <h3 class="text-color font-medium mt-2">Dynamic</h3>
+                </div>
+                <!-- Static -->
+                <div class="cursor-pointer text-center p-4 bg-white rounded-lg shadow-md transition-all transform hover:scale-105" onclick="selectType('Static')" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://www.bigbraincreation.com/bigbrain-images/bigbrain-team/static-website.gif" alt="Static" class="w-24 h-24 mx-auto rounded-full" />
+                    <h3 class="text-color font-medium mt-2">Static</h3>
+                </div>
+                <!-- Bootstrap -->
+                <div class="cursor-pointer text-center p-4 bg-white rounded-lg shadow-md transition-all transform hover:scale-105" onclick="selectType('Bootstrap')" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="https://blogs.purecode.ai/blogs/wp-content/uploads/2023/12/giphy-6.gif" alt="Bootstrap" class="w-24 h-24 mx-auto rounded-full" />
+                    <h3 class="text-color font-medium mt-2">Bootstrap</h3>
+                </div>
+                <!-- WordPress -->
+                <div class="cursor-pointer text-center p-4 bg-white rounded-lg shadow-md transition-all transform hover:scale-105" onclick="selectType('WordPress')" data-aos="zoom-in" data-aos-delay="400">
+                    <img src="https://cdn.dribbble.com/users/505482/screenshots/1776821/wordpress-dribbble.gif" alt="WordPress" class="w-24 h-24 mx-auto rounded-full" />
+                    <h3 class="text-color font-medium mt-2">WordPress</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Choose Domain -->
+        <div class="choose-domain mb-8" data-aos="fade-up">
+            <h2 class="text-color text-2xl font-bold mb-4">Choose Your Domain</h2>
+            <div class="flex flex-col md:flex-row gap-4">
+                <!-- Domain Name Input -->
+                <input type="text" id="domainInput" class="form-control border border-gray-300 rounded-lg p-2 w-full md:w-1/2 focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="Enter your domain name (e.g., mywebsite)" />
+                <!-- Domain Extension Dropdown -->
+                <select id="domainName" class="form-control border border-gray-300 rounded-lg p-2 w-full md:w-1/2 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                    <option value="">Select Extension</option>
+                    <option value=".in">.in</option>
+                    <option value=".com">.com</option>
+                    <option value=".net">.net</option>
+                    <option value=".pk">.pk</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Additional Functions -->
+        <div class="additional-functions mb-8" data-aos="fade-up">
+            <h2 class="text-color text-2xl font-bold mb-4">Additional Functions</h2>
+            <div id="functionCheckboxes" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <label class="flex items-center space-x-2 bg-white p-3 rounded-lg shadow-md cursor-pointer transition-colors hover:bg-gray-50">
+                    <input type="checkbox" value="Payment Gateway" class="function-checkbox form-checkbox h-5 w-5 text-orange-500" />
+                    <span class="text-gray-700">Payment Gateway</span>
+                </label>
+                <label class="flex items-center space-x-2 bg-white p-3 rounded-lg shadow-md cursor-pointer transition-colors hover:bg-gray-50">
+                    <input type="checkbox" value="Chat" class="function-checkbox form-checkbox h-5 w-5 text-orange-500" />
+                    <span class="text-gray-700">Chat</span>
+                </label>
+                <label class="flex items-center space-x-2 bg-white p-3 rounded-lg shadow-md cursor-pointer transition-colors hover:bg-gray-50">
+                    <input type="checkbox" value="Social Login" class="function-checkbox form-checkbox h-5 w-5 text-orange-500" />
+                    <span class="text-gray-700">Social Login</span>
+                </label>
+                <label class="flex items-center space-x-2 bg-white p-3 rounded-lg shadow-md cursor-pointer transition-colors hover:bg-gray-50">
+                    <input type="checkbox" value="Maps" class="function-checkbox form-checkbox h-5 w-5 text-orange-500" />
+                    <span class="text-gray-700">Maps</span>
+                </label>
+                <label class="flex items-center space-x-2 bg-white p-3 rounded-lg shadow-md cursor-pointer transition-colors hover:bg-gray-50">
+                    <input type="checkbox" value="Translation" class="function-checkbox form-checkbox h-5 w-5 text-orange-500" />
+                    <span class="text-gray-700">Translation</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="server-required mb-8" data-aos="fade-up">
+            <h2 class="text-color text-2xl font-bold mb-4">Server Required</h2>
+            <div id="serverOptions" class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Server Options -->
+                <div class="server-option text-center bg-white p-4 rounded-lg shadow-md transition-transform transform hover:scale-105" onclick="selectServer('50')" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://media1.giphy.com/media/3oz8xsv9iipBDQdtQY/200.gif?cid=6c09b952q4olj24kjmlbh4paqskzjtxtypvrz5jd4waeu0qt&ep=v1_gifs_search&rid=200.gif&ct=g" alt="50 Person Server" class="w-24 h-24 mx-auto rounded-full">
+                    <h3 class="font-semibold text-color">50 Person</h3>
+                </div>
+                <div class="server-option text-center bg-white p-4 rounded-lg shadow-md transition-transform transform hover:scale-105" onclick="selectServer('500')" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://i.gifer.com/embedded/download/P3AV.gif" alt="500 Person Server" class="w-24 h-24 mx-auto rounded-full">
+                    <h3 class="font-semibold text-color">500 Person</h3>
+                </div>
+                <div class="server-option text-center bg-white p-4 rounded-lg shadow-md transition-transform transform hover:scale-105" onclick="selectServer('5000')" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="https://media1.giphy.com/media/l0HlMZ8SVW8FOCxMc/giphy.gif?cid=6c09b952dfny0q44oaw6ul4ntcm1bt3tk225atmjpwzflhmh&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="5000 Person Server" class="w-24 h-24 mx-auto rounded-full">
+                    <h3 class="font-semibold text-color">5000 Person</h3>
+                </div>
+                <div class="server-option text-center bg-white p-4 rounded-lg shadow-md transition-transform transform hover:scale-105" onclick="selectServer('50000')" data-aos="zoom-in" data-aos-delay="400">
+                    <img src="https://media1.giphy.com/media/3o6Ztc6DbAK2pwi8xi/giphy.gif?cid=6c09b952s5izqmt285x96hwgyzs14yz4jfsrhrxqs9xguuia&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="50000 Person Server" class="w-24 h-24 mx-auto rounded-full">
+                    <h3 class="font-semibold text-color">50000 Person</h3>
+                </div>
+            </div>
+        </div>
+        <div>
+           
+            
+        </div>
+        <!-- Final Price -->
+        <div class="final-price text-center" data-aos="fade-up">
+            <button onclick="calculatePrice()" class="btn bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-full mr-2 transition-all duration-300 ease-in-out transform hover:scale-105 animate-pulse"> </i>Calculate Price<i class="animation"></i></button>
+            <div id="finalDisplay" class="final-display text-4xl font-bold text-gray-800 my-4">0.00</div>
+            <button id="ease" onclick="EasePrice()" class="btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition-all duration-300 ease-in-out transform hover:scale-105"></i>Ease Price<i class="animation"></i></button>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+
+        let selectedServerLoad = ""; 
+        let selectedType = "";
+
+        function selectServer(load) {
+            selectedServerLoad = load;
+            document.querySelectorAll('.server-option').forEach(option => {
+                option.classList.remove('selected-card');
+            });
+            event.currentTarget.classList.add('selected-card');
+        }
+
+        function selectType(type) {
+            selectedType = type;
+            document.querySelectorAll('.type-of-website .grid > div').forEach(card => {
+                card.classList.remove('selected-card');
+            });
+            event.currentTarget.classList.add('selected-card');
+        }
+      
+        function typeOfWebsiteCost(type) {
+            const costs = { "Dynamic": 10, "Static": 7, "Bootstrap": 5, "WordPress": 3 };
+            return costs[type] || 0;
+        }
+
+        function domainCost(domain) {
+            const domains = { ".in": 4000, ".com": 40000, ".net": 400, ".pk": 40 };
+            return domains[domain] || 0;
+        }
+
+        const additionalFunctionCost = (functions) => {
+            const functionCosts = {
+                "Payment Gateway": 1000,
+                "Chat": 2000,
+                "Social Login": 3000,
+                "Maps": 4000,
+                "Translation": 5000,
+            };
+            return functions.reduce((total, func) => total + (functionCosts[func] || 0), 0);
+        };
+
+        function serverCost(load) {
+            const loadCosts = { "50": 500, "500": 5000, "5000": 10000, "50000": 15000 };
+            return loadCosts[load] || 0;
+        }
+
+        function calculatePrice() {
+            const domain = document.getElementById('domainName').value;
+            const selectedFunctions = Array.from(
+                document.querySelectorAll(".function-checkbox:checked")
+            ).map((checkbox) => checkbox.value);
+            
+            if (!selectedType || !selectedServerLoad || !domain) {
+                alert("Please select a website type, server load, and domain extension.");
+                return;
+            }
+
+            const totalPrice =
+                (domainCost(domain) + additionalFunctionCost(selectedFunctions) + serverCost(selectedServerLoad)) *
+                typeOfWebsiteCost(selectedType);
+
+            document.getElementById('finalDisplay').textContent = `${totalPrice.toFixed(2)}`;
+        }
+
+        function EasePrice() {
+            const domains = { ".in": 4000, ".com": 40000, ".net": 400, ".pk": 40 };
+            const domain = document.getElementById('domainName').value;
+            const keys = Object.keys(domains);
+            const currentIndex = keys.indexOf(domain);
+        
+            if (currentIndex > 0) {
+                const previousKey = keys[currentIndex - 1];
+                document.getElementById('domainName').value = previousKey;
+            }
+            
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            let uncheckedFound = false;
+    
+            checkboxes.forEach((checkbox) => {
+                if (checkbox.checked && !uncheckedFound) {
+                    checkbox.checked = false;
+                    uncheckedFound = true;
+                }
+            });
+            
+            calculatePrice();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkbox Toggle</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .checkbox-group {
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Checkbox Uncheck Example</h1>
+  <div class="checkbox-group">
+    <label><input type="checkbox" id="checkbox1"> Checkbox 1</label><br>
+    <label><input type="checkbox" id="checkbox2"> Checkbox 2</label><br>
+    <label><input type="checkbox" id="checkbox3"> Checkbox 3</label><br>
+    <label><input type="checkbox" id="checkbox4"> Checkbox 4</label><br>
+    <label><input type="checkbox" id="checkbox5"> Checkbox 5</label>
+  </div>
+  <button onclick="uncheckCheckboxes()">Uncheck Some Checkboxes</button>
+
+  <script>
+    function uncheckCheckboxes() {
+      // Select specific checkboxes to uncheck
+      document.getElementById("checkbox2").checked = false;
+      document.getElementById("checkbox4").checked = false;
+
+     
+    }
+  </script>
+</body>
+</html>

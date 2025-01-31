@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Calculator</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <!-- left side  -->
+     <img src="serverimage.jpg" alt="">
+     <!-- right side  -->
+      <div class="rightside">
+        <div class="field-of-website">
+            <h1>Field of Website</h1>
+      <hr class="line">
+      <hr class="orange-line">
+<input type="text" placeholder="Select from here">
+<!-- this input contains drop down menu  -->
+
+        </div>
+
+        <div class="type-of-website">
+            <h1>Type of website</h1>
+            <div class="type-image">
+                <img src="" alt="">
+                <h1>Dyanmic</h1>
+            </div>
+            <div class="type-image">
+                <img src="" alt="">
+                <h1>Static</h1>
+            </div>
+            <div class="type-image">
+                <img src="" alt="">
+                <h1>Bootstrap</h1>
+            </div>
+            <div class="type-image">
+                <img src="" alt="">
+                <h1>wordpress</h1>
+            </div>
+        </div>
+        <div class="choose-domain">
+            <h1>Choose Your Domain</h1>
+            <input type="text" placeholder="Your Domain">
+            <input type="text" class="domain-extension">
+                <!-- this contain drop down menu like
+                .net , .com , .in  -->
+
+            </input>
+
+        </div>
+        <div class="additional-functions">
+            <h1>Addtional Function</h1>
+            <input type="text" placeholder="Select From Here ">
+            <button>Add new 
+                <img src="orange-plus-icon" alt="">
+            </button>
+            <div> <img src="white-cross-icon" alt="">translation 
+                <!-- this will be dynamically created tags when user input something in input field then it will show here as tags (it can be more than one until user stops adding)  -->
+
+            </div>
+
+        </div>
+       <div class="server-required">
+        <h1>Server Required </h1>
+        <h1>select max load required (per day)</h1>
+        <div class="server-image">
+            <img src="" alt="">
+            <h1> 50 person</h1>
+        </div>
+        <div class="server-image">
+            <img src="" alt="">
+            <h1> 500 person</h1>
+        </div>
+        <div class="server-image">
+            <img src="" alt="">
+            <h1> 5000 person</h1>
+        </div>
+        <div class="server-image">
+            <img src="" alt="">
+            <h1> 50000 person</h1>
+        </div>
+        <class="orange-server-bar" hr>
+
+       </div>
+      <div class="final-price">
+        <button class="left">FINAL PRICE</button>
+        <div class="final-display">
+        <!-- here the final price will display      -->
+        </div>
+        <button class="right">
+            make ease 
+            <!-- when user will click this button the change in  the price will happen  -->
+        </button>
+
+      </div>
+      </div>
+    <script src="script.js"></script>
+</body>
+</html>

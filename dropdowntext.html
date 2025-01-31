@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domain Price Checker</title>
+</head>
+<body>
+    <h2>Domain Price Checker</h2>
+    <label for="domainName">Select a domain:</label>
+    <select id="domainName">
+        <option value=".in">.in</option>
+        <option value=".com">.com</option>
+        <option value=".net">.net</option>
+        <option value=".pk">.pk</option>
+    </select>
+    <button onclick="EasePrice()">Get Previous Domain Price</button>
+    <p id="output"></p>
+
+    <script>
+        function EasePrice() {
+            const domains = { ".in": 4000, ".com": 40000, ".net": 400, ".pk": 40 };
+            const domain = document.getElementById('domainName').value; // Selected value
+            const keys = Object.keys(domains); // Domains ki keys ka array
+            const currentIndex = keys.indexOf(domain); // Current domain ka index find karte hain
+        
+            if (currentIndex > 0) { // Agar pehli key exist karti hai
+                const previousKey = keys[currentIndex - 1]; // Pehle wali key
+                const previousValue = domains[previousKey]; // Us key ka value
+                
+                // Drop-down ki value update karte hain
+                document.getElementById('domainName').value = previousKey;
+                
+                // Output me previous key aur uska value dikhate hain
+                document.getElementById('output').textContent = 
+                    `Previous Domain: ${previousKey}, Price: ${previousValue}`;
+            } else {
+                document.getElementById('output').textContent = 
+                    `${domain} ke pehle koi domain nahi hai.`;
+            }
+        }
+    </script>
+</body>
+</html>
